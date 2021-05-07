@@ -1,1 +1,45 @@
-provider "aws" {}
+provider "aws" {
+	region = "ap-south-1"
+	profile = "default"
+}
+
+# step 1 -> Launch ec2 instance
+
+resource "aws_instance" "sujagi" {
+	ami = "ami-010aff33ed5991201"
+	instance_type = "t2.micro"
+	tags = {
+	    Name = "ec2_ebs"
+          }
+}
+
+# step 2 -> Create ebs volume
+
+resource "aws_ebs_volume" "volume" {
+	availability_zone = aws_instance.sujagi.availability_zone
+	size = 10
+	tags = {
+	    Name = "ec2_ebs_vol"
+         }
+}
+
+# step 3 -> Attaching volume to instance
+
+resource "aws_volume_attachment" "ebs_att" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.volume.id
+  instance_id = aws_instance.sujagi.id
+}
+
+# step 4 -> Outputs
+
+output "az" {
+	value = aws_instance.sujagi.availability_zone	
+}
+
+output "public_ip" {
+	value = aws_instance.sujagi.public_ip	
+}
+
+
+
