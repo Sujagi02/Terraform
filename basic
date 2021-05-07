@@ -12,7 +12,7 @@ resource "aws_instance" "sv" {
                 }
      }
      
-resource "aws_instance" "aa" {
+resource "aws_instance" "sv1" {
 	   ami = "ami-0a9d27a9f4f5c0efc"
 	   instance_type = "t2.micro"
 	   tags = {
