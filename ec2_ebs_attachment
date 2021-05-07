@@ -40,6 +40,3 @@ output "az" {
 output "public_ip" {
 	value = aws_instance.sujagi.public_ip	
 }
-
-
-
