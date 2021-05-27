@@ -7,6 +7,29 @@ resource "aws_vpc" "my_vpc" {
 }
 }
 
+#Creating a Security Group 
+resource "aws_default_security_group" "sg" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  ingress {
+    protocol  = -1
+    self      = true
+    from_port = 0
+    to_port   = 0
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+  }
+
+  tags = {
+    Name = "MY SG"
+  }
+}
+
+
 #Creating IN Gateway
 resource "aws_internet_gateway" "gw" {
     vpc_id = aws_vpc.my_vpc.id
