@@ -15,5 +15,5 @@ variable "ec2_type" {
 }
 
 variable "account_id" {
-    default =  "965777747972" 
+    default =  "************" 
 }
