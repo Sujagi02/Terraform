@@ -1,5 +1,5 @@
 resource "aws_instance" "wp" {
-	ami = "ami-010aff33ed5991201"
+	ami = "ami-06a0b4e3b7eb7a300"
         key_name = "task-2" 
 	instance_type = "t2.micro"
 
